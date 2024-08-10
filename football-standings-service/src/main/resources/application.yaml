@@ -8,3 +8,9 @@ management:
     web:
       exposure:
         include: "*"
+
+springdoc:
+  api-docs:
+    path: /v1/api-docs
+  swagger-ui:
+    path: /swagger-ui.html

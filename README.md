@@ -8,8 +8,8 @@ Problem Statement (Full Stack – UI, Service + CI/CD)
  
 Develop, Test and Deploy a microservice to find standings of a team playing league football match using country name, league name and team name; 
 • End user should be able to view results by changing the input parameters 
-• The service should be ready to be released to production or live environment 
-• The service should be accessible via web browser or postman (using any one of JavaScript frameworks, HTML or JSON) 
+• The service should be ready to be released to production or live environment  ✅
+• The service should be accessible via web browser or postman (using any one of JavaScript frameworks, HTML or JSON)  ✅
 • The solution should support offline mode with toggles 
 • The service should return relevant results as expected, even while the underlying dependencies (Ex: Public API) are not available! 
  
@@ -26,16 +26,16 @@ Country ID & Name: (<ID>) - <name>
 League ID & Name: (<ID>) - <name> 
 Team ID & Name: (<ID>) - <name> 
 Overall League Position: <position> 
- 
+
 NFRs  
-• Demonstrate SOLID, 12 Factor and HATEOAS principles, Design Patterns in the design and implementation 
-• Demonstrate Performance, Optimization & Security aspects 
-• Demonstrate Production readiness of the code 
+• Demonstrate SOLID, 12 Factor and HATEOAS principles, Design Patterns in the design and implementation  ✅
+• Demonstrate Performance, Optimization & Security aspects  ✅
+• Demonstrate Production readiness of the code  ✅
 • Demonstrate TDD & BDD & Quality aspects 
-• Demonstrate sensitive information used in the Micro Services such as API keys are protected / encrypted 
+• Demonstrate sensitive information used in the Micro Services such as API keys are protected / encrypted  ✅ 
  
 Documentation  
-• Include the open-API spec./Swagger to be part of the code. Should be able to view API via swagger (Documentation to explain the purpose of the API along with Error codes that the service consumers & client must be aware of!) 
+• Include the open-API spec./Swagger to be part of the code. Should be able to view API via swagger (Documentation to explain the purpose of the API along with Error codes that the service consumers & client must be aware of!) ✅
 • Create a README.md file in the repository and explain the design and implementation approach 
 • In the README, add a sequence diagram or flowchart created using draw.io – https://www.draw.io 
 • Mention the design patterns used in the code 
