@@ -80,5 +80,6 @@ public class Standings {
     @JsonProperty("stage_name")
     private String stageName;
 
-    public Standings(){}
+    public Standings() {
+    }
 }

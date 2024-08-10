@@ -1,112 +1,114 @@
+// SearchComponent.tsx
 import React, { useState } from 'react';
-import './Search.css';
+
+interface TableEntry {
+  countryId: string;
+  countryName: string;
+  leagueId: string;
+  leagueName: string;
+  teamId: string;
+  teamName: string;
+}
 
 interface SearchComponentProps {
-    onSearch: (searchData: SearchData) => void;
+  onSearch: (params: {
+    countryId: string;
+    countryName: string;
+    leagueId: string;
+    leagueName: string;
+    teamId: string;
+    teamName: string;
+  }) => void;
+  values: TableEntry
 }
-  
-export interface SearchData {
-    country: { id: string; name: string };
-    league: { id: string; name: string };
-    team: { id: string; name: string };
-}
 
-const SearchComponent: React.FC<SearchComponentProps> = ({ onSearch }) => {
-    const [country, setCountry] = useState({ id: '', name: '' });
-    const [league, setLeague] = useState({ id: '', name: '' });
-    const [team, setTeam] = useState({ id: '', name: '' });
+const SearchComponent: React.FC<SearchComponentProps> = ({ onSearch, values }) => {
+  const [countryId, setCountryId] = useState(values.countryId);
+  const [countryName, setCountryName] = useState(values.countryName);
+  const [leagueId, setLeagueId] = useState(values.leagueId);
+  const [leagueName, setLeagueName] = useState(values.leagueName);
+  const [teamId, setTeamId] = useState(values.teamId);
+  const [teamName, setTeamName] = useState(values.teamName);
 
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>, type: 'country' | 'league' | 'team', field: 'id' | 'name') => {
-        const value = e.target.value;
-        if (type === 'country') {
-        setCountry({ ...country, [field]: value });
-        } else if (type === 'league') {
-        setLeague({ ...league, [field]: value });
-        } else if (type === 'team') {
-        setTeam({ ...team, [field]: value });
-        }
-    };
+  const handleSearch = () => {
+    onSearch({
+      countryId,
+      countryName,
+      leagueId,
+      leagueName,
+      teamId,
+      teamName,
+    });
+  };
 
-    const handleSearch = () => {
-        onSearch({ country, league, team });
-    };
-
-    return (
-        <div className="space-y-4">
-        <div className="flex space-x-4">
-            <div className="flex flex-col">
-            <label className="font-semibold text-gray-700">Country ID</label>
-            <input
-                type="text"
-                value={country.id}
-                onChange={(e) => handleInputChange(e, 'country', 'id')}
-                placeholder="Country ID"
-                className="px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-            </div>
-            <div className="flex flex-col">
-            <label className="font-semibold text-gray-700">Country Name</label>
-            <input
-                type="text"
-                value={country.name}
-                onChange={(e) => handleInputChange(e, 'country', 'name')}
-                placeholder="Country Name"
-                className="px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-            </div>
-        </div>
-        <div className="flex space-x-4">
-            <div className="flex flex-col">
-            <label className="font-semibold text-gray-700">League ID</label>
-            <input
-                type="text"
-                value={league.id}
-                onChange={(e) => handleInputChange(e, 'league', 'id')}
-                placeholder="League ID"
-                className="px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-            </div>
-            <div className="flex flex-col">
-            <label className="font-semibold text-gray-700">League Name</label>
-            <input
-                type="text"
-                value={league.name}
-                onChange={(e) => handleInputChange(e, 'league', 'name')}
-                placeholder="League Name"
-                className="px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-            </div>
-        </div>
-        <div className="flex space-x-4">
-            <div className="flex flex-col">
-            <label className="font-semibold text-gray-700">Team ID</label>
-            <input
-                type="text"
-                value={team.id}
-                onChange={(e) => handleInputChange(e, 'team', 'id')}
-                placeholder="Team ID"
-                className="px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-            </div>
-            <div className="flex flex-col">
-            <label className="font-semibold text-gray-700">Team Name</label>
-            <input
-                type="text"
-                value={team.name}
-                onChange={(e) => handleInputChange(e, 'team', 'name')}
-                placeholder="Team Name"
-                className="px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-            </div>
-        </div>
-        <button
-            onClick={handleSearch}
-            className="px-6 py-2 text-white bg-blue-500 rounded-md shadow-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-        >
-            Search
-        </button>
-        </div>
-    );
+  return (
+    <div>
+    <div className="flex p-3 m-5 border border-gray-300 rounded-lg">
+      <div className="mb-4 p-3">
+        <label className="block text-sm font-medium text-gray-700">Country ID</label>
+        <input
+          type="text"
+          value={countryId}
+          onChange={(e) => setCountryId(e.target.value)}
+          className="mt-1 p-2 border border-gray-300 rounded-md"
+        />
+      </div>
+      <div className="mb-4 p-3">
+        <label className="block text-sm font-medium text-gray-700">Country Name</label>
+        <input
+          type="text"
+          value={countryName}
+          onChange={(e) => setCountryName(e.target.value)}
+          className="mt-1 p-2 border border-gray-300 rounded-md"
+        />
+      </div>
+      <div className="mb-4 p-3">
+        <label className="block text-sm font-medium text-gray-700">League ID</label>
+        <input
+          type="text"
+          value={leagueId}
+          onChange={(e) => setLeagueId(e.target.value)}
+          className="mt-1 p-2 border border-gray-300 rounded-md"
+        />
+      </div>
+      <div className="mb-4 p-3">
+        <label className="block text-sm font-medium text-gray-700">League Name</label>
+        <input
+          type="text"
+          value={leagueName}
+          onChange={(e) => setLeagueName(e.target.value)}
+          className="mt-1 p-2 border border-gray-300 rounded-md"
+        />
+      </div>
+      <div className="mb-4 p-3">
+        <label className="block text-sm font-medium text-gray-700">Team ID</label>
+        <input
+          type="text"
+          value={teamId}
+          onChange={(e) => setTeamId(e.target.value)}
+          className="mt-1 p-2 border border-gray-300 rounded-md"
+        />
+      </div>
+      <div className="mb-4 p-3">
+        <label className="block text-sm font-medium text-gray-700">Team Name</label>
+        <input
+          type="text"
+          value={teamName}
+          onChange={(e) => setTeamName(e.target.value)}
+          className="mt-1 p-2 border border-gray-300 rounded-md"
+        />
+      </div>
+    </div>
+    <div className='flex item-center justify-center'>
+      <button
+        onClick={handleSearch}
+        className="px-4 py-2 bg-blue-500 text-white rounded-md"
+      >
+        Search
+      </button>
+    </div>
+    </div>
+  );
 };
-  
+
 export default SearchComponent;

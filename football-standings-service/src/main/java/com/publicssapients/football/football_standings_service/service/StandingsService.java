@@ -27,7 +27,7 @@ public class StandingsService {
             String leagueName,
             String teamId,
             String teamName
-    ){
+    ) {
         WebClient webClient = webClientBuilder.build();
 
         return webClient.get()
@@ -59,7 +59,8 @@ public class StandingsService {
     private List<Standings> parseStandings(String response) {
         ObjectMapper objectMapper = new ObjectMapper();
         try {
-            return objectMapper.readValue(response, new TypeReference<List<Standings>>() {});
+            return objectMapper.readValue(response, new TypeReference<List<Standings>>() {
+            });
         } catch (JsonProcessingException e) {
             throw new RuntimeException("Failed to parse standings", e);
         }
